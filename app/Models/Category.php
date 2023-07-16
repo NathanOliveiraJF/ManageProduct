@@ -2,21 +2,19 @@
 
 namespace App\Models;
 
-use App\Repository\CategoryRepository;
-use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\Id;
-use Doctrine\ORM\Mapping\Table;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Entity]
-#[Table(name: 'categories')]
-class Category
+class Category extends Model
 {
-    #[Id]
-    #[Column(type: Types::INTEGER), GeneratedValue]
-    protected int $id;
-    #[Column]
-    protected string $name;
+    protected $table = 'categories';
+    protected $fillable = [
+        'id',
+        'name'
+    ];
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
 }

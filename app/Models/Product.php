@@ -2,13 +2,23 @@
 
 namespace App\Models;
 
-class Product
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class Product extends Model
 {
-    protected int $id;
-    protected int $category_id;
-    protected string $sku;
-    protected string $name;
-    protected float $price;
-    protected string $description;
-    protected float $quantity;
+    protected $table = 'products';
+    protected $fillable = [
+        'id',
+        'category_id',
+        'sku',
+        'name',
+        'price',
+        'description',
+        'quantity'
+    ];
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
