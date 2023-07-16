@@ -2,5 +2,5 @@
 
 # jetbrains
 /.idea/
-
+.env
 composer.lock

@@ -12,5 +12,9 @@
             "email": "nathanoliveira003jf@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "doctrine/orm": "*",
+        "symfony/cache": "^6.3",
+        "vlucas/phpdotenv": "^5.5"
+    }
 }
