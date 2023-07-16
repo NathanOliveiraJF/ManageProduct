@@ -1,0 +1,6 @@
+/vendor/
+
+# jetbrains
+/.idea/
+
+composer.lock
