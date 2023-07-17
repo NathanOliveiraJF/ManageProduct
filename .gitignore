@@ -2,5 +2,6 @@
 
 # jetbrains
 /.idea/
+/cache/
 .env
 composer.lock
