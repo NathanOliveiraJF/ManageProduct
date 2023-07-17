@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 use Jenssegers\Blade\Blade;
 class Controller
 {
-
-    protected Blade $blade;
+    protected Blade $view;
     public function __construct()
     {
-        $this->blade = new Blade(__DIR__.'/resources/views', 'cache');
+        $this->view = $GLOBALS['blade'];
     }
-
 }
