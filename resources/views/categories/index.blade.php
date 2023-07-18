@@ -25,7 +25,7 @@
                 </td>
 
                 <td class="data-grid-td">
-                    <span class="data-grid-cell-content">{{ $category->id }}</span>
+                    <span class="data-grid-cell-content">{{ $category->code }}</span>
                 </td>
 
                 <td class="data-grid-td">
