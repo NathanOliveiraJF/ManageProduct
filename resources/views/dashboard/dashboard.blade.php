@@ -2,7 +2,7 @@
 <!doctype html>
 <html ⚡>
 <head>
-  <title>Webjump | Backend Test | Products</title>
+  <title>Webjump | Backend Test | Dashboard</title>
   <meta charset="utf-8">
 
 <link  rel="stylesheet" type="text/css"  media="all" href="../css/style.css" />
@@ -36,92 +36,57 @@
     <span class="go-title">Administration Panel</span>
   </div>    
 </header>  
-<!-- Header --><body>
+<!-- Header -->
   <!-- Main Content -->
   <main class="content">
     <div class="header-list-page">
-      <h1 class="title">Products</h1>
-      <a href="create.blade.php" class="btn-action">Add new Product</a>
+      <h1 class="title">Dashboard</h1>
     </div>
-    <table class="data-grid">
-      <tr class="data-row">
-        <th class="data-grid-th">
-            <span class="data-grid-cell-content">Name</span>
-        </th>
-        <th class="data-grid-th">
-            <span class="data-grid-cell-content">SKU</span>
-        </th>
-        <th class="data-grid-th">
-            <span class="data-grid-cell-content">Price</span>
-        </th>
-        <th class="data-grid-th">
-            <span class="data-grid-cell-content">Quantity</span>
-        </th>
-        <th class="data-grid-th">
-            <span class="data-grid-cell-content">Categories</span>
-        </th>
-
-        <th class="data-grid-th">
-            <span class="data-grid-cell-content">Actions</span>
-        </th>
-      </tr>
-      <tr class="data-row">
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">Product 1 Name</span>
-        </td>
-      
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">SKU1</span>
-        </td>
-
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">R$ 19,90</span>
-        </td>
-
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">100</span>
-        </td>
-
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">Category 1 <Br />Category 2</span>
-        </td>
-      
-        <td class="data-grid-td">
-          <div class="actions">
-            <div class="action edit"><span>Edit</span></div>
-            <div class="action delete"><span>Delete</span></div>
-          </div>
-        </td>
-      </tr>
-      <tr class="data-row">
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">Product 2 Name</span>
-        </td>
-      
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">SKU2</span>
-        </td>
-
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">R$ 59,90</span>
-        </td>
-
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">999</span>
-        </td>
-
-        <td class="data-grid-td">
-           <span class="data-grid-cell-content">Category 1</span>
-        </td>
-      
-        <td class="data-grid-td">
-          <div class="actions">
-            <div class="action edit"><span>Edit</span></div>
-            <div class="action delete"><span>Delete</span></div>
-          </div>
-        </td>
-      </tr>
-    </table>
+    <div class="infor">
+      You have 4 products added on this store: <a href="create.blade.php" class="btn-action">Add new Product</a>
+    </div>
+    <ul class="product-list">
+      <li>
+        <div class="product-image">
+          <img src="../images/product/tenis-runner-bolt.png" layout="responsive" width="164" height="145" alt="Tênis Runner Bolt" />
+        </div>
+        <div class="product-info">
+          <div class="product-name"><span>Tênis Runner Bolt</span></div>
+          <div class="product-price"><span class="special-price">9 available</span> <span>R$459,99</span></div>
+        </div>
+      </li>
+      <li>
+        <div class="product-image">
+          <a href="tenis-basket-light.html" title="Tênis Basket Light">
+            <img src="../images/product/tenis-basket-light.png" layout="responsive" width="164" height="145" alt="Tênis Basket Light" />
+          </a>
+        </div>
+        <div class="product-info">
+          <div class="product-name"><span>Tênis Basket Light</span></div>
+          <div class="product-price"><span class="special-price">1 available</span> <span>R$459,99</span></div>
+        </div>
+      </li>
+      <li>
+        <div class="product-image">
+          <a href="tenis-basket-light.html" title="Tênis Basket Light">
+           <img src="../images/product/tenis-2d-shoes.png" layout="responsive" width="164" height="145" alt="Tênis 2D Shoes" />
+          </a>
+        </div>
+        <div class="product-info">
+          <div class="product-name"><span>Tênis 2D Shoes</span></div>
+          <div class="product-price"><span class="special-price">2 Available</span> <span>R$459,99</span></div>
+        </div>
+      </li>
+      <li>
+        <div class="product-image">
+          <img src="../images/product/tenis-sneakers-43n.png" layout="responsive" width="164" height="145" alt="Tênis Sneakers 43N" />
+        </div>
+        <div class="product-info">
+          <div class="product-name"><span>Tênis Sneakers 43N</span></div>
+          <div class="product-price"><span class="special-price">Out of stock</span> <span>R$459,99</span></div>
+        </div>
+      </li>
+    </ul>
   </main>
   <!-- Main Content -->
 
