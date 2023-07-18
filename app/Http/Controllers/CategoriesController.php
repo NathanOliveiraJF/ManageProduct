@@ -12,4 +12,14 @@ class CategoriesController extends Controller
             'categories' => Category::all()
         ])->render();
     }
+
+    public function create(): void
+    {
+        echo $this->view->make('categories.create');
+    }
+
+    public function store(): void
+    {
+        echo 'store';
+    }
 }
