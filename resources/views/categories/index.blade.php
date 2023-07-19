@@ -4,7 +4,7 @@
 @section('content')
     <div class="header-list-page">
         <h1 class="title">Categories</h1>
-        <a href="create.blade.php" class="btn-action">Add new Category</a>
+        <a href="{{ url('categories.create') }}" class="btn-action">Add new Category</a>
     </div>
     <table class="data-grid">
         <tr class="data-row">

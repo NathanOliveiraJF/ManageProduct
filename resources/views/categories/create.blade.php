@@ -5,11 +5,11 @@
     <form action="{{ url('categories.store') }}" method="POST">
       <div class="input-field">
         <label for="category-name" class="label">Category Name</label>
-        <input type="text" id="category-name" class="input-text" name="category-name"/>
+        <input type="text" id="category-name" class="input-text" name="name"/>
       </div>
       <div class="input-field">
         <label for="category-code" class="label">Category Code</label>
-        <input type="text" id="category-code" class="input-text" />
+        <input type="text" id="category-code" class="input-text" name="code" />
       </div>
       <div class="actions-form">
         <a href="{{ url('categories.index') }}" class="action back">Back</a>

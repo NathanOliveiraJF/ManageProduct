@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use http\Env\Request;
 
 class CategoriesController extends Controller
 {
@@ -20,6 +21,6 @@ class CategoriesController extends Controller
 
     public function store(): void
     {
-        echo 'store';
+        echo 'deu bom caiu aqui';
     }
 }
