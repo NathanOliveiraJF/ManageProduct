@@ -10,11 +10,11 @@ class CreateCategoryRequest
     /**
      * @throws Exception
      */
-    public static function validated($input): void
+    public static function validated(): void
     {
         //TODO: feed the exception as it catches errors and returns
         $validator = v::key('code', v::number())->key('name', v::stringType()->notEmpty());
-        $validator = $validator->validate($input);
+        $validator = $validator->validate(input()->all());
         if(!$validator) {
             throw new Exception('Invalid Data');
         }

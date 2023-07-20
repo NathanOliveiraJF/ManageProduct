@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use http\Env\Request;
+use Pecee\SimpleRouter\SimpleRouter as Router;
 
 class CategoriesController extends Controller
 {
@@ -21,6 +22,7 @@ class CategoriesController extends Controller
 
     public function store(): void
     {
-        echo 'deu bom caiu aqui';
+        Category::query()->create(input()->all());
+        redirect('/categories');
     }
 }
