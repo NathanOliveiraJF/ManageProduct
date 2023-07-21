@@ -25,6 +25,20 @@ class CategoriesController extends Controller
         redirect('/categories');
     }
 
+    public function edit($id): void
+    {
+        $categories = Category::query()->find($id);
+        echo $this->view->make('categories.edit', [
+            'category' =>  $categories
+        ])->render();
+    }
+    public function update($id): void
+    {
+        Category::query()->find($id)->update(input()->all());
+        redirect('/categories');
+    }
+
+
     public function delete($id): void
     {
         Category:Category::query()->find((int)$id)->delete();
