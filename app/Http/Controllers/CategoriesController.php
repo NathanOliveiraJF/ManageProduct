@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use http\Env\Request;
 use Pecee\SimpleRouter\SimpleRouter as Router;
 
 class CategoriesController extends Controller
@@ -25,4 +24,11 @@ class CategoriesController extends Controller
         Category::query()->create(input()->all());
         redirect('/categories');
     }
+
+    public function delete($id): void
+    {
+        Category:Category::query()->find((int)$id)->delete();
+        redirect('/categories');
+    }
+
 }
