@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Middleware\EnsureDataIsValid;
 use Pecee\SimpleRouter\SimpleRouter as Route;
 use App\Http\Controllers\CategoriesController;
+
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
 Route::get('/categories', [CategoriesController::class, 'index'])->name('categories.index');
 Route::get('/categories/create', [CategoriesController::class, 'create'])->name('categories.create');
