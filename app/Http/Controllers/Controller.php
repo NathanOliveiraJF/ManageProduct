@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 use Jenssegers\Blade\Blade;
-class Controller
+abstract class Controller
 {
-    protected Blade $view;
-    public function __construct()
+    public function view(): Blade
     {
-        $this->view = $GLOBALS['blade'];
+        return $GLOBALS['blade'];
     }
 }
