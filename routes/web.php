@@ -16,6 +16,7 @@ Route::get('/products/create', [ProductsController::class, 'create'])->name('pro
 Route::get('/products/edit/{id}', [ProductsController::class, 'edit'])->name('products.edit');
 Route::post('/products/update/{id}', [ProductsController::class, 'update'])->name('products.update');
 Route::post('/products/store', [ProductsController::class, 'store'])->name('products.store');
+Route::delete('/products/delete/{id}', [ProductsController::class, 'delete'])->name('products.delete');
 
 
 Route::group(['middleware' => EnsureDataIsValid::class], function () {

@@ -76,4 +76,11 @@ class ProductsController extends Controller
         $_SESSION['message'] = 'Product Successfully Updated';
         redirect('/products');
     }
+
+    public function delete($id): void
+    {
+        Product::query()->find($id)->delete();
+        $_SESSION['message'] = 'Product Successfully Deleted';
+        redirect('/products');
+    }
 }

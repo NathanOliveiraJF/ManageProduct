@@ -60,7 +60,10 @@
                 <td class="data-grid-td">
                     <div class="actions">
                         <a href="{{ url('products.edit', ['id' => $product->id]) }}" class="action edit"><span>Edit</span></a>
-                        <div class="action delete"><span>Delete</span></div>
+                        <form method="post" action="{{ url('products.delete', ['id' => $product->id]) }}">
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <button class="btn-action">Delete</button>
+                        </form>
                     </div>
                 </td>
             </tr>
