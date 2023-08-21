@@ -13,6 +13,7 @@ Route::get('/categories/create', [CategoriesController::class, 'create'])->name(
 Route::get('/categories/edit/{id}', [CategoriesController::class, 'edit'])->name('categories.edit');
 Route::post('/categories/update/{id}', [CategoriesController::class, 'update'])->name('categories.update');
 Route::delete('/categories/delete/{id}', [CategoriesController::class, 'delete'])->name('categories.delete');
+Route::post('/categories/store', [CategoriesController::class, 'store'])->name('categories.store');
 
 Route::get('/products', [ProductsController::class, 'index'])->name('products.index');
 Route::get('/products/create', [ProductsController::class, 'create'])->name('products.create');
@@ -20,9 +21,3 @@ Route::get('/products/edit/{id}', [ProductsController::class, 'edit'])->name('pr
 Route::post('/products/update/{id}', [ProductsController::class, 'update'])->name('products.update');
 Route::post('/products/store', [ProductsController::class, 'store'])->name('products.store');
 Route::delete('/products/delete/{id}', [ProductsController::class, 'delete'])->name('products.delete');
-
-
-Route::group(['middleware' => EnsureDataIsValid::class], function () {
-    Route::post('/categories/store', [CategoriesController::class, 'store'])->name('categories.store');
-});
-
