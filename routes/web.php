@@ -11,7 +11,10 @@ Route::get('/categories/edit/{id}', [CategoriesController::class, 'edit'])->name
 Route::post('/categories/update/{id}', [CategoriesController::class, 'update'])->name('categories.update');
 Route::delete('/categories/delete/{id}', [CategoriesController::class, 'delete'])->name('categories.delete');
 
+Route::get('/products', [ProductsController::class, 'index'])->name('products.index');
 Route::get('/products/create', [ProductsController::class, 'create'])->name('products.create');
+Route::post('/products/store', [ProductsController::class, 'store'])->name('products.store');
+
 
 Route::group(['middleware' => EnsureDataIsValid::class], function () {
     Route::post('/categories/store', [CategoriesController::class, 'store'])->name('categories.store');

@@ -1,8 +1,13 @@
 @extends('layouts.app')
 @section('title', 'New Product')
 @section('content')
+    @if(isset($_SESSION['message']))
+        <span>
+            {{ $_SESSION['message'] }}
+        </span>
+    @endif
     <h1 class="title new-item">New Product</h1>
-    <form>
+    <form action="{{ url('products.store') }}" method="POST">
         <div class="input-field">
             <label for="sku" class="label">Product SKU</label>
             <input type="text" id="sku" class="input-text" name="sku"/>
@@ -21,7 +26,7 @@
         </div>
         <div class="input-field">
             <label for="category" class="label">Categories</label>
-            <select multiple id="category" class="input-text" name="categoryId">
+            <select name="categories[]" multiple id="category" class="input-text">
                 @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
@@ -29,7 +34,7 @@
         </div>
         <div class="input-field">
             <label for="description" class="label">Description</label>
-            <textarea id="description" class="input-text"></textarea>
+            <textarea id="description" class="input-text" name="description"></textarea>
         </div>
         <div class="actions-form">
             <a href="index.blade.php" class="action back">Back</a>
