@@ -13,6 +13,8 @@ Route::delete('/categories/delete/{id}', [CategoriesController::class, 'delete']
 
 Route::get('/products', [ProductsController::class, 'index'])->name('products.index');
 Route::get('/products/create', [ProductsController::class, 'create'])->name('products.create');
+Route::get('/products/edit/{id}', [ProductsController::class, 'edit'])->name('products.edit');
+Route::post('/products/update/{id}', [ProductsController::class, 'update'])->name('products.update');
 Route::post('/products/store', [ProductsController::class, 'store'])->name('products.store');
 
 

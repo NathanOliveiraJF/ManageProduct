@@ -59,7 +59,7 @@
 
                 <td class="data-grid-td">
                     <div class="actions">
-                        <div class="action edit"><span>Edit</span></div>
+                        <a href="{{ url('products.edit', ['id' => $product->id]) }}" class="action edit"><span>Edit</span></a>
                         <div class="action delete"><span>Delete</span></div>
                     </div>
                 </td>

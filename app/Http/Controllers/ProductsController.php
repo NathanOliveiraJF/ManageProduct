@@ -44,4 +44,36 @@ class ProductsController extends Controller
         $_SESSION['message'] = 'Product Successfully Created';
         redirect('/products');
     }
+
+    public function edit($id): void
+    {
+        $product = Product::query()->find($id);
+        $categories = Category::all();
+        echo $this->view()->make('products.edit', [
+            'product' =>  $product,
+            'categories' => $categories
+        ])->render();
+    }
+
+    public function update($id): void
+    {
+        $productValidated = $this->request->validated(input()->all());
+        if(!$this->request->isValid())  {
+            $_SESSION['message'] = $this->request->getMessage();
+            redirect("/products/edit/$id");
+        }
+        $alreadyExists = Product::getProductBySku($productValidated['sku']);
+        $product = Product::query()->find($id);
+        if ($alreadyExists) {
+            if ($alreadyExists->sku != $product->sku) {
+                $_SESSION['message'] = "This sku $product->sku already Exist";
+                redirect("/products/edit/$id");
+            }
+        }
+        $product->update($productValidated);
+        $product->categories()->detach();
+        $product->categories()->attach(input('categories'));
+        $_SESSION['message'] = 'Product Successfully Updated';
+        redirect('/products');
+    }
 }
