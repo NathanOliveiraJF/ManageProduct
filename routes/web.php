@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductsController;
-use App\Http\Middleware\EnsureDataIsValid;
 use Pecee\SimpleRouter\SimpleRouter as Route;
 use App\Http\Controllers\CategoriesController;
 
