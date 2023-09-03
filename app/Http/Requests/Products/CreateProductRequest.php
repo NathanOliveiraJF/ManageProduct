@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Products;
 
 use App\Http\Requests\FormRequest;
-use Exception;
 use Respect\Validation\Exceptions\NestedValidationException;
 use Respect\Validation\Validator as v;
 
@@ -24,11 +23,11 @@ class CreateProductRequest implements FormRequest
             $validator->assert($data);
             $this->isValid = true;
             $validated = [
-                'sku' =>  input('sku'),
-                'name' =>  input('name'),
-                'price' => (float)input('price'),
-                'description' =>   input('description'),
-                'quantity' => (int)input('quantity')
+                'sku' =>  $data['sku'],
+                'name' =>  $data['name'],
+                'price' => (float)$data['price'],
+                'description' =>   $data['description'],
+                'quantity' => (int)$data['quantity']
             ];
         } catch (NestedValidationException $exception) {
            $this->message = $exception->getFullMessage();

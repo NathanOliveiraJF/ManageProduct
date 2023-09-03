@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Pecee\SimpleRouter\SimpleRouter as Router;
 
 class CategoriesController extends Controller
 {
