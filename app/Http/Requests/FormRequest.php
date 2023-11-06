@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-interface FormRequest
+interface  FormRequest
 {
-    public function validated(array $data): array;
+ public function validated(array $data): void;
 }

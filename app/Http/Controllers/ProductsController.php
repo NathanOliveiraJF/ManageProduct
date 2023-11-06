@@ -2,20 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ProductException;
 use App\Http\Requests\Products\CreateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Services\ProductsService;
 
 class ProductsController extends Controller
 {
     protected CreateProductRequest $request;
+    protected ProductsService $productsService;
+
     public function __construct()
     {
         $this->request = new CreateProductRequest();
+        $this->productsService = new ProductsService();
     }
-    public function  index(): void
+
+    public function index(): void
     {
-        echo $this->view()->make('products.index',[
+        echo $this->view()->make('products.index', [
             'products' => Product::all()
         ])->render();
     }
@@ -29,20 +35,14 @@ class ProductsController extends Controller
 
     public function store(): void
     {
-        $productValidated = $this->request->validated(input()->all());
-        if(!$this->request->isValid())  {
-            $_SESSION['message'] = $this->request->getMessage();
+        try {
+            $this->productsService->create(input()->all());
+            $_SESSION['message'] = 'Product Successfully Created';
+            redirect('/products');
+        } catch (ProductException $productException) {
+            $_SESSION['message'] = $productException->getMessage();
             redirect('/products/create');
         }
-        $alreadyExists = Product::getProductBySku($productValidated['sku']);
-        if ($alreadyExists) {
-            $_SESSION['message'] = 'This sku already Exist';
-            redirect('/products');
-        }
-        $product = Product::query()->create($productValidated);
-        $product->categories()->attach(input('categories'));
-        $_SESSION['message'] = 'Product Successfully Created';
-        redirect('/products');
     }
 
     public function edit($id): void
@@ -50,31 +50,21 @@ class ProductsController extends Controller
         $product = Product::query()->find($id);
         $categories = Category::all();
         echo $this->view()->make('products.edit', [
-            'product' =>  $product,
+            'product' => $product,
             'categories' => $categories
         ])->render();
     }
 
     public function update($id): void
     {
-        $productValidated = $this->request->validated(input()->all());
-        if(!$this->request->isValid())  {
-            $_SESSION['message'] = $this->request->getMessage();
+        try {
+            $this->productsService->update($id, input()->all());
+            $_SESSION['message'] = 'Product Successfully Updated';
+            redirect('/products');
+        } catch (ProductException $productException) {
+            $_SESSION['message'] = $productException->getMessage();
             redirect("/products/edit/$id");
         }
-        $alreadyExists = Product::getProductBySku($productValidated['sku']);
-        $product = Product::query()->find($id);
-        if ($alreadyExists) {
-            if ($alreadyExists->sku != $product->sku) {
-                $_SESSION['message'] = "This sku $product->sku already Exist";
-                redirect("/products/edit/$id");
-            }
-        }
-        $product->update($productValidated);
-        $product->categories()->detach();
-        $product->categories()->attach(input('categories'));
-        $_SESSION['message'] = 'Product Successfully Updated';
-        redirect('/products');
     }
 
     public function delete($id): void
