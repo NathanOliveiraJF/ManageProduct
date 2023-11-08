@@ -4,10 +4,11 @@ namespace App\Services;
 
 use App\Exceptions\ProductException;
 use App\Http\Requests\FormRequest;
-use App\Http\Requests\Products\CreateProductRequest;
 use App\Models\Product;
+use App\Http\Requests\Products\CreateProductRequest;
 use DI\Container;
 use Respect\Validation\Exceptions\NestedValidationException;
+use function DI\create;
 
 class ProductsService implements ServiceInterface
 {
@@ -16,7 +17,7 @@ class ProductsService implements ServiceInterface
   public function __construct()
   {
     $container = new Container();
-    $this->createProductRequest = $container->get(CreateProductRequest::class);
+    $this->createProductRequest = $container->get("CreateProductRequest");
   }
 
   public function create(array $product): void

@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ProductException;
-use App\Http\Requests\Products\CreateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Services\ProductsService;
+use App\Services\ServiceInterface;
+use DI\Container;
 
 class ProductsController extends Controller
 {
-    protected CreateProductRequest $request;
-    protected ProductsService $productsService;
+    protected ServiceInterface $productsService;
 
     public function __construct()
     {
-        $this->request = new CreateProductRequest();
-        $this->productsService = new ProductsService();
+      $container = new Container();
+      $this->productsService = $container->get(ProductsService::class);
     }
 
     public function index(): void
@@ -69,7 +69,7 @@ class ProductsController extends Controller
 
     public function delete($id): void
     {
-        Product::query()->find($id)->delete();
+        $this->productsService->delete($id);
         $_SESSION['message'] = 'Product Successfully Deleted';
         redirect('/products');
     }
