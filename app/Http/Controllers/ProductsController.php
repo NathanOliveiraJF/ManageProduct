@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Exceptions\ProductException;
 use App\Models\Category;
 use App\Models\Product;
-use App\Services\ProductsService;
 use App\Services\ServiceInterface;
-use DI\Container;
+use Config\DI\Builder;
 
 class ProductsController extends Controller
 {
@@ -15,8 +14,7 @@ class ProductsController extends Controller
 
     public function __construct()
     {
-      $container = new Container();
-      $this->productsService = $container->get(ProductsService::class);
+      $this->productsService = Builder::getContainer("ProductsService");
     }
 
     public function index(): void
