@@ -14,7 +14,8 @@
         }
     ],
     "scripts": {
-      "start:dev": "php -S localhost:8000"
+      "start:dev": "php -S localhost:8000",
+      "tests": "./vendor/bin/phpunit tests"
     },
     "require": {
         "vlucas/phpdotenv": "^5.5",

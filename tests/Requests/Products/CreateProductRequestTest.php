@@ -5,20 +5,21 @@ namespace Tests\Requests\Products;
 
 use Config\DI\Builder;
 use PHPUnit\Framework\TestCase;
+use Respect\Validation\Exceptions\NestedValidationException;
 
 class CreateProductRequestTest extends TestCase {
-  protected $createProductRequest;
+  protected $request;
 
   protected function setUp(): void
   {
     parent::setUp();
-    $this->createProductRequest = Builder::getContainer("CreateProductRequest");
+    $this->request = Builder::getContainer("CreateProductRequest");
   }
 
   /** @test */
-  public function testValidProduct(): void
+  public function testValidDataProduct(): void
   {
-    $payload = [
+    $data = [
       "sku" => "12279567",
       "name" => "Bebida de Arroz",
       "price" => 100.0,
@@ -26,25 +27,23 @@ class CreateProductRequestTest extends TestCase {
       "quantity" => 10000 
     ];
 
-    $this->createProductRequest->validated($payload);
-    $isvalid = $this->createProductRequest->isValid();
-    $this->assertTrue($isvalid);
+    $this->expectNotToPerformAssertions();
+    $this->request->validated($data);
   }
 
   /** @test */
-  public function testInvalidProduct(): void
+  public function testInvalidDataProduct(): void
   {
-    $payload = [
+    $data = [
       "sku" => "",
       "name" => "",
-      "price" => "",
       "description" => "",
+      "price" => "",
       "quantity" => ""
     ];
 
-    $this->createProductRequest->validated($payload);
-    $isNotValid = $this->createProductRequest->isValid();
-    $this->assertTrue($isNotValid);
+    $this->expectException(NestedValidationException::class);
+    $this->request->validated($data);
   }
 }
 
