@@ -13,6 +13,9 @@
             "email": "nathanoliveira003jf@gmail.com"
         }
     ],
+    "scripts": {
+      "start:dev": "php -S localhost:8000"
+    },
     "require": {
         "vlucas/phpdotenv": "^5.5",
         "illuminate/database": "^8.0",

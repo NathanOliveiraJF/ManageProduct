@@ -10,9 +10,10 @@ require "blade.conf.php";
 
 require "./vendor/pecee/simple-router/helpers.php";
 require "routes/web.php";
-require "./config.php";
+
 
 SimpleRouter::start();
 
 
 session_unset();
+
