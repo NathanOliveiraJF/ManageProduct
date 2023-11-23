@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProductsController;
+use App\Src\Product\Http\Controllers\ProductsController;
+use App\Src\Category\Http\Controllers\CategoriesController;
+use App\Src\Dashboard\Http\Controllers\DashboardController;
 use Pecee\SimpleRouter\SimpleRouter as Route;
-use App\Http\Controllers\CategoriesController;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 

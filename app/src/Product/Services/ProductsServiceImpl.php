@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Services;
+namespace App\Src\Product\Services;
 
 use App\Exceptions\ProductException;
-use App\Http\Requests\FormRequest;
-use App\Models\Product;
+use App\Src\Product\Entity\Product;
+use App\Src\Product\Http\Requests\ProductFormRequestInterface;
 use Config\DI\Builder;
 use Respect\Validation\Exceptions\NestedValidationException;
 
-class ProductsService implements ServiceInterface
+class ProductsServiceImpl implements ProductsServiceInterface
 {
-  private FormRequest $createProductRequest;
+  private ProductFormRequestInterface $createProductRequest;
 
   public function __construct()
   {
-    $this->createProductRequest = Builder::getContainer("CreateProductRequest");
+    $this->createProductRequest = Builder::getContainer("CreateProductRequestImpl");
   }
 
   public function create(array $product): void

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Products;
+namespace App\Src\Product\Http\Requests;
 
-use App\Http\Requests\FormRequest;
+use App\Src\Product\Http\Requests\ProductFormRequestInterface;
 use Respect\Validation\Validator as v;
 
-class CreateProductRequest implements FormRequest
+class CreateProductRequestImpl implements ProductFormRequestInterface
 {
     public function validated(array $data): void
     {

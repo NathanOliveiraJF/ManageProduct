@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Src\Product\Services;
 
-interface ServiceInterface
+interface ProductsServiceInterface
 {
     public function create(array $product): void;
     public function update(int $id, array $data): void;

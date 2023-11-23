@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Src\Product\Entity;
 
+use App\Src\Category\Entity\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
