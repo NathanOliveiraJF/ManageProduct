@@ -2,7 +2,8 @@
 
 namespace App\Src\Product\Services;
 
-use App\Exceptions\ProductException;
+use App\Src\Product\Dto\ProductDto;
+use App\Src\Product\Exceptions\ProductException;
 use App\Src\Product\Entity\Product;
 use App\Src\Product\Http\Requests\ProductFormRequestInterface;
 use Config\DI\Builder;
@@ -17,38 +18,39 @@ class ProductsServiceImpl implements ProductsServiceInterface
     $this->createProductRequest = Builder::getContainer("CreateProductRequestImpl");
   }
 
-  public function create(array $product): void
+  public function create(ProductDto $product): void
   {
     try {
-      $this->createProductRequest->validated($product);
-      $alreadyExists = Product::getProductBySku($product['sku']);
-      if ($alreadyExists) {
-        throw ProductException::ProductSkuAlreadExist();
-      }
-      $product = Product::query()->create($product);
+      $this->createProductRequest->validated((array) $product);
+      $this->checkSkuAlreadyExist($product->sku);
+      $product = Product::query()->create((array) $product);
       $product->categories()->attach(input('categories'));
     } catch (NestedValidationException $e) {
       throw ProductException::ProductPayloadIsInvalid($e->getFullMessage());
     }
   }
 
-  public function update(int $id, array $data): void
+  public function update(int $id, ProductDto $product): void
   {
     try {
-      $this->createProductRequest->validated($data);
-      $product = Product::query()->find($id);
-      $productExist = Product::getProductBySku($data['sku']);
-      if ($productExist->sku != $product->sku) {
-        throw ProductException::ProductSkuAlreadExist();
-      }
-      $product->update($data);
-      $product->categories()->detach();
-      $product->categories()->attach(input('categories'));
+      $this->createProductRequest->validated((array) $product);
+      $this->checkSkuAlreadyExist($product->sku);
+      $productUpdated = Product::query()->find($id);
+      $productUpdated->update((array) $product);
+      $productUpdated->categories()->detach();
+      $productUpdated->categories()->attach(input('categories'));
     } catch (NestedValidationException $e) {
       throw ProductException::ProductPayloadIsInvalid($e->getFullMessage());
     }
   }
 
+  private function checkSkuAlreadyExist(string $sku): void
+  {
+    $productExist = Product::query()->where('sku', '=', $sku)->first();
+    if ($productExist->sku != $sku) {
+      throw ProductException::ProductSkuAlreadExist();
+    }
+  }
   public function delete(int $id): void
   {
     Product::query()->find($id)->delete();

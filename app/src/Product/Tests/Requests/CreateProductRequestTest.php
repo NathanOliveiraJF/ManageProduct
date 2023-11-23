@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Src\Product\Tests\Requests\Products;
+namespace App\Src\Product\Tests\Requests;
 
 use Config\DI\Builder;
 use PHPUnit\Framework\TestCase;

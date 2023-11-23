@@ -2,7 +2,8 @@
 
 namespace App\Src\Product\Http\Controllers;
 
-use App\Exceptions\ProductException;
+use App\Src\Product\Dto\ProductDto;
+use App\Src\Product\Exceptions\ProductException;
 use App\Src\Category\Entity\Category;
 use App\Src\Product\Entity\Product;
 use App\Src\Product\Services\ProductsServiceInterface;
@@ -37,7 +38,7 @@ class ProductsController
     public function store(): void
     {
         try {
-            $this->productsService->create(input()->all());
+            $this->productsService->create(ProductDto::create(input()->all()));
             $_SESSION['message'] = 'Product Successfully Created';
             redirect('/products');
         } catch (ProductException $productException) {
